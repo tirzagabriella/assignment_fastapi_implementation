@@ -133,7 +133,7 @@ export default function Home() {
       ];
     });
 
-    // add to firebase
+    // add task via fastAPI
     addTask(
       newItem,
       datetimeState.format("ddd, YYYY-MM-DD HH:mm"),
@@ -181,7 +181,7 @@ export default function Home() {
       });
     });
 
-    // edit task at firebase
+    // edit task via fastAPI
     todos.forEach((todo) => {
       if (todo.id == editedId) {
         editTask(editedId, newValue, todo.completed);
