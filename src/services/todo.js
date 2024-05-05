@@ -63,8 +63,6 @@ export const editTask = async (taskId, title, completed) => {
     //   completed: completed
     // });
 
-    console.log('edit api is triggered')
-
     const payload = {
       task: title,
       completed: completed
@@ -82,7 +80,13 @@ export const editTask = async (taskId, title, completed) => {
 
 export const deleteTask = async (taskId) => {
   try {
-    await deleteDoc(doc(db, "tasks", taskId));
+    // await deleteDoc(doc(db, "tasks", taskId));
+    
+    axios
+      .delete(`http://localhost:8000/todos/delete/${taskId}`)
+      .catch((error) => {
+        console.error("There was an error updating the todo: ", error);
+      });
   } catch (error) {
     console.log("Error deleting task : ", error)
   }

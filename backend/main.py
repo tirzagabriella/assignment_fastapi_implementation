@@ -68,7 +68,6 @@ def update_todos(todo_id: str, updated_todo: Todo):
 
     current_todo = todos[todo_id]
 
-    # Update fields if provided in the request
     if updated_todo.task is not None:
         current_todo.task = updated_todo.task
     if updated_todo.completed is not None:
@@ -78,13 +77,13 @@ def update_todos(todo_id: str, updated_todo: Todo):
     if updated_todo.userId is not None:
         current_todo.userId = updated_todo.userId
 
-    todos[todo_id] = current_todo  # Ensure the dictionary is updated
+    todos[todo_id] = current_todo  
     return todos[todo_id]
 
 # Delete todos by id
-# @app.delete("/todos/delete/{todos_id}")
-# def delete_todos(todos_id: int):
-#     if todos_id not in todos:
-#         return {"Error": f"ID {todos_id} does not exist."}
-#     del todos[todos_id]
-#     return {"Message": "Task deleted successfully."}
+@app.delete("/todos/delete/{todos_id}")
+def delete_todos(todos_id: str):
+    if todos_id not in todos:
+        return {"Error": f"ID {todos_id} does not exist."}
+    del todos[todos_id]
+    return {"Message": "Task deleted successfully."}
