@@ -156,7 +156,7 @@ export default function Home() {
       });
     });
 
-    // update at firebase
+    // update using fastapi route
     todos.forEach((todo) => {
       if (todo.id == id) {
         editTask(id, todo.title, completed);

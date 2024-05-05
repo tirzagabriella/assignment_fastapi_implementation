@@ -58,10 +58,23 @@ export const addTask = async (task, datetime, uid) => {
 
 export const editTask = async (taskId, title, completed) => {
   try {
-    await updateDoc(doc(db, "tasks", taskId), {
+    // await updateDoc(doc(db, "tasks", taskId), {
+    //   task: title,
+    //   completed: completed
+    // });
+
+    console.log('edit api is triggered')
+
+    const payload = {
       task: title,
       completed: completed
-    });
+    }
+
+    axios
+      .put(`http://localhost:8000/todos/edit/${taskId}`, payload)
+      .catch((error) => {
+        console.error("There was an error updating the todo: ", error);
+      });
   } catch (error) {
     console.log("Error updating data : ", error);
   }
